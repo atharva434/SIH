@@ -1,0 +1,99 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<style>
+  body {
+    margin: 0;
+    color: #494140;
+    /* height: 100%;
+          overflow: hidden; */
+  }
+
+  .container {
+    width: 400px;
+  }
+  .ticket-content {
+    padding-left: 10%;
+  }
+  .box1 {
+    margin-left: 35%;
+    margin-right: 38.5%;
+    margin-bottom: 70%;
+    border-style: solid;
+  }
+</style>
+<div class="container" style="text-align: center">
+  <i
+    class="fa fa-check-circle"
+    aria-hidden="true"
+    style="font-size: 80px; color: green"
+  ></i>
+</div>
+<h2 style="text-align: center; color: green">
+  Thank you. Your Payment was Successful.
+</h2>
+<br />
+<br />
+<div class="box1">
+  <div class="container">
+    <section>
+      <img src=" {% static 'Images/razpay.jpg' %}" width="400px" alt="" />
+      <h2 style="text-align: center">Entry Ticket</h2>
+      <div class="ticket-content">
+        <table>
+          <tr>
+            <td><strong>Name:</strong></td>
+            <td>{{name}}</td>
+          </tr>
+          <tr>
+            <td><strong>Date:</strong></td>
+            <td>{{date}}</td>
+          </tr>
+          <tr>
+            <td><strong>Monument:</strong></td>
+            <td>{{monument}}</td>
+          </tr>
+          <tr>
+            <td><strong>City:</strong></td>
+            <td>{{city}}</td>
+          </tr>
+
+          {% if count_adult != 0 %}
+          <tr>
+            <td><strong>No. of Adults(Indian):</strong></td>
+            <td>{{count_adult}}</td>
+          </tr>
+          {% endif %} 
+          
+          {% if count_children != 0 %}
+          <tr>
+            <td><strong>No. of Children:</strong></td>
+            <td>{{count_children}}</td>
+          </tr>
+          {% endif %} 
+          {% if count_abroad != 0 %}
+          <tr>
+            <td><strong>No. of Adults(Foreign Nationals):</strong></td>
+            <td>{{count_abroad}}</td>
+          </tr>
+          {% endif %}
+
+          <tr>
+            <td><strong>Total No. of Visitors:</strong></td>
+            <td>{{total_count}}</td>
+          </tr>
+
+          <tr>
+            <td><strong>Price:</strong></td>
+            <td>{{total_cost}}</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>
+<div class="text-center mt-5">
+  <a href="{% url 'react_app' %}" class="btn btn-primary" role="button"
+    >Buy another one</a
+  >
+</div>
+
+{% endblock %}
