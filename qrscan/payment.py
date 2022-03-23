@@ -72,7 +72,7 @@ def payment_status(request):
     cold_coffee.razorpay_payment_id = response['razorpay_payment_id']
     cold_coffee.paid = True
     cold_coffee.save()
-    url=""
+    url=f"https://safar-ticketless.herokuapp.com/customerscanner/?order_id={response['razorpay_order_id']}"
     # delete_unpaid()
     img=make(response['razorpay_order_id'])
     img_path = "Frontend/build/static/Generated_QR/test.png"
