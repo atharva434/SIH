@@ -11,7 +11,7 @@ def customscanner(request):
     id=request.GET["order_id"]
     if MonumentTicket.objects.filter(order_id=id).exists():
         return redirect("scan")
-        
+    return redirect("react_app")    
 
 
 
