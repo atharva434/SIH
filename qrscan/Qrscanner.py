@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 def customscanner(request):
     id=request.GET["order_id"]
     if MonumentTicket.objects.filter(order_id=id).exists():
-        return redirect("scan")
+        return render(request,"success.html")
     return redirect("react_app")    
 
 
