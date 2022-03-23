@@ -74,7 +74,7 @@ def payment_status(request):
     cold_coffee.save()
     url=f"https://safar-ticketless.herokuapp.com/customerscanner/?order_id={response['razorpay_order_id']}"
     # delete_unpaid()
-    img=make(response['razorpay_order_id'])
+    img=make(url)
     img_path = "Frontend/build/static/Generated_QR/test.png"
     img.save(img_path)
     context_dict={
