@@ -49,6 +49,8 @@ def book(request):
         
         Ticket.save()
         response_payment['name'] = name
+        response_payment['number'] = phone
+
         print(response_payment)
         # return Response(response_payment)
         return render(request,'coffee_payment.html',{ 'payment': response_payment})    
