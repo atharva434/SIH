@@ -23,6 +23,7 @@ urlpatterns = [
     path("Counter/", views.Counter, name="Counter"),
     path("adminpage/", views.Admin, name="AdminPage"),
     path('Ticket/',views.Ticket_display,name='ticket'),
+    path('customerscanner/',Qrscanner.customscanner,name='okk'),
     path('display/<monuments>/',views.display,name='display'),
     path("react", views.MyReactView.as_view(), name='react_app'),  
     # this route catches any url below the main one, so the path can be passed to the front end

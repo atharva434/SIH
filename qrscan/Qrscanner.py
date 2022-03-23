@@ -6,6 +6,16 @@ from django.shortcuts import render, redirect
 import numpy as np
 from datetime import datetime, timedelta
 
+
+def customscanner(request):
+    id=request.GET["order_id"]
+    if MonumentTicket.objects.filter(order_id=id).exists():
+        return redirect("scan")
+        
+
+
+
+
 def gen_frames():  
     camera = cv2.VideoCapture(0)
 
