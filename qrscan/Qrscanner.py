@@ -1,11 +1,50 @@
 import cv2
 from pyzbar.pyzbar import decode
+from sqlalchemy import null
 from .models import MonumentTicket
 from django.http import StreamingHttpResponse
 from django.shortcuts import render, redirect
 import numpy as np
 from datetime import datetime, timedelta
+from asyncio.windows_events import NULL
+object=null
+from django.http import response
 
+a=False
+
+def change_param(verified):
+    print ("hii")
+    global object
+    global a
+    object=verified
+    a=True
+
+
+def lcd_display(request):
+    global object
+    print("ard")
+    try:
+        if object.verified == False:
+            d={
+                "message":"Access Granted",
+                "name":object.name,
+                "bool":a
+
+            }
+            return response.JsonResponse(d)
+        else:
+            d={
+                "message":"Access denied",
+                "name":object.name,
+                "bool":a
+            }
+            return response.JsonResponse(d)
+
+    except:
+        d={
+            "bool":a
+        }
+        return response.JsonResponse(d)
 
 def customscanner(request):
     id=request.GET["order_id"]
@@ -34,6 +73,7 @@ def gen_frames():
                         if verified.verified==False:
                             color=(0,255,0)
                             displaytext = "Access Granted"
+                            change_param(verified)
                             verified.verified=True
 
                             now = datetime.now()
@@ -48,8 +88,10 @@ def gen_frames():
                             if datetime.now()<verified.timevalid.replace(tzinfo=None):
                                 color=(0,255,0)
                                 displaytext = "Access Granted"
+                                change_param(verified)
                             else:
                                 color=(0,0,255)
+                                change_param(verified)
                                 displaytext =  "Unauthorised Access"
                         
                     else:
