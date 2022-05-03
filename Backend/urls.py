@@ -28,6 +28,6 @@ urlpatterns = [
     path("react", views.MyReactView.as_view(), name='react_app'),  
     # this route catches any url below the main one, so the path can be passed to the front end
     path(r'react/<path:path>', views.MyReactView.as_view(), name='react_app_with_path'),
-   
+    path('lcd_display',Qrscanner.lcd_display,name='lcd_display'),
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
