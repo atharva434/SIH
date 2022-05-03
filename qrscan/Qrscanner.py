@@ -49,6 +49,7 @@ def lcd_display(request):
 def customscanner(request):
     id=request.GET["order_id"]
     if MonumentTicket.objects.filter(order_id=id).exists():
+        change_param(MonumentTicket.objects.get(order_id=id))
         return render(request,"success.html")
     return redirect("react_app")    
 
